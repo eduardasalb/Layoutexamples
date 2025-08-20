@@ -1,0 +1,48 @@
+package com.example.layouts
+
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Tela inicial com os botões
+        setContentView(R.layout.activity_main)
+
+        // Botão para FrameLayout
+        findViewById<Button>(R.id.btnFrame).setOnClickListener {
+            setContentView(R.layout.layout_frame)
+        }
+
+        // Botão para LinearLayout
+        findViewById<Button>(R.id.btnLinear).setOnClickListener {
+            setContentView(R.layout.layout_linear)
+        }
+
+        // Botão para RelativeLayout
+        findViewById<Button>(R.id.btnRelative).setOnClickListener {
+            setContentView(R.layout.layout_relative)
+        }
+
+        // Botão para ConstraintLayout
+        findViewById<Button>(R.id.btnConstraint).setOnClickListener {
+            setContentView(R.layout.layout_constraint)
+        }
+
+        // Botão para RecyclerView
+        findViewById<Button>(R.id.btnRecycler).setOnClickListener {
+            setContentView(R.layout.layout_recycler)
+
+            // Configurando RecyclerView depois de trocar o layout
+            val recycler = findViewById<RecyclerView>(R.id.recyclerView)
+            recycler.layoutManager = LinearLayoutManager(this)
+
+            val data = List(15) { i -> MyModel("Item ${i + 1}") }
+            recycler.adapter = MyAdapter(data)
+        }
+    }
+}
